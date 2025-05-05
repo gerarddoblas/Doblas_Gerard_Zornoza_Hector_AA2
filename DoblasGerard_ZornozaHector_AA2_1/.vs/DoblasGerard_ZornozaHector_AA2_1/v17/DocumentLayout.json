@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\34657\\Documents\\Grand-Theft-Auto-ENTI-City\\DoblasGerard_ZornozaHector_AA2_1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F40674DF-2F8F-45E2-9E47-2C1C39B86F21}|DoblasGerard_ZornozaHector_AA2_1\\DoblasGerard_ZornozaHector_AA2_1.vcxproj|C:\\Users\\34657\\Documents\\Grand-Theft-Auto-ENTI-City\\DoblasGerard_ZornozaHector_AA2_1\\DoblasGerard_ZornozaHector_AA2_1\\DoblasGerard_ZornozaHector_AA2_1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F40674DF-2F8F-45E2-9E47-2C1C39B86F21}|DoblasGerard_ZornozaHector_AA2_1\\DoblasGerard_ZornozaHector_AA2_1.vcxproj|solutionrelative:DoblasGerard_ZornozaHector_AA2_1\\DoblasGerard_ZornozaHector_AA2_1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DoblasGerard_ZornozaHector_AA2_1.cpp",
+              "DocumentMoniker": "C:\\Users\\34657\\Documents\\Grand-Theft-Auto-ENTI-City\\DoblasGerard_ZornozaHector_AA2_1\\DoblasGerard_ZornozaHector_AA2_1\\DoblasGerard_ZornozaHector_AA2_1.cpp",
+              "RelativeDocumentMoniker": "DoblasGerard_ZornozaHector_AA2_1\\DoblasGerard_ZornozaHector_AA2_1.cpp",
+              "ToolTip": "C:\\Users\\34657\\Documents\\Grand-Theft-Auto-ENTI-City\\DoblasGerard_ZornozaHector_AA2_1\\DoblasGerard_ZornozaHector_AA2_1\\DoblasGerard_ZornozaHector_AA2_1.cpp",
+              "RelativeToolTip": "DoblasGerard_ZornozaHector_AA2_1\\DoblasGerard_ZornozaHector_AA2_1.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-05T11:49:34.963Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
