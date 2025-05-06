@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+
+# Archivos temporales y de configuración de Visual Studio
+*.suo
+*.VC.db*
+*.opendb
