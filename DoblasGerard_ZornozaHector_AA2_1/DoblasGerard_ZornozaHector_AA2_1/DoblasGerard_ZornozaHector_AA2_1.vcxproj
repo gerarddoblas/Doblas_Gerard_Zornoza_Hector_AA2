@@ -127,7 +127,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Carl Johnson.cpp" />
     <ClCompile Include="DoblasGerard_ZornozaHector_AA2_1.cpp" />
+    <ClCompile Include="FileReader.cpp" />
+    <ClCompile Include="Map.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Carl Johnson.h" />
+    <ClInclude Include="FileReader.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="Types.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
