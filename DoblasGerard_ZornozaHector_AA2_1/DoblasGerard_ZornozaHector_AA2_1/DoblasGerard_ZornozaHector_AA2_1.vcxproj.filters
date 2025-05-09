@@ -35,7 +35,7 @@
     <ClInclude Include="FileReader.h">
       <Filter>Archivos de recursos</Filter>
     </ClInclude>
-    <ClInclude Include="Carl Johnson.h">
+    <ClInclude Include="CarlJohnson.h">
       <Filter>Archivos de recursos</Filter>
     </ClInclude>
     <ClInclude Include="Types.h">

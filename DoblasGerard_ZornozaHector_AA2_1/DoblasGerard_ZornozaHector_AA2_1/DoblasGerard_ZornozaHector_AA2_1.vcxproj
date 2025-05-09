@@ -133,7 +133,7 @@
     <ClCompile Include="Map.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Carl Johnson.h" />
+    <ClInclude Include="CarlJohnson.h" />
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Types.h" />
