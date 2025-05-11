@@ -1,23 +1,20 @@
-﻿  CarlJohnson.cpp
-C:\Users\34657\Documents\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\CarlJohnson.h(9,7): warning C4099: 'Map': nombre de tipo visto anteriormente usando 'struct' ahora se ve usando 'class'
-  (compilando archivo de origen "CarlJohnson.cpp")
-      C:\Users\34657\Documents\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(36,8):
-      vea la declaración de 'Map'
-  
-  DoblasGerard_ZornozaHector_AA2_1.cpp
-C:\Users\34657\Documents\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(36,8): warning C4099: 'Map': nombre de tipo visto anteriormente usando 'class' ahora se ve usando 'struct'
-  (compilando archivo de origen "DoblasGerard_ZornozaHector_AA2_1.cpp")
-      C:\Users\34657\Documents\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(36,8):
-      vea la declaración de 'Map'
-  
-  FileReader.cpp
-  Map.cpp
-C:\Users\34657\Documents\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(36,8): warning C4099: 'Map': nombre de tipo visto anteriormente usando 'class' ahora se ve usando 'struct'
+﻿  Map.cpp
+C:\Users\34657\Documents\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(37,8): warning C4099: 'Map': nombre de tipo visto anteriormente usando 'class' ahora se ve usando 'struct'
   (compilando archivo de origen "Map.cpp")
-      C:\Users\34657\Documents\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(36,8):
+      C:\Users\34657\Documents\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(37,8):
       vea la declaración de 'Map'
   
 C:\Users\34657\Documents\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.cpp(5,15): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
   Pedestrian.cpp
+C:\Users\34657\Documents\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(37,8): warning C4099: 'Map': nombre de tipo visto anteriormente usando 'class' ahora se ve usando 'struct'
+  (compilando archivo de origen "Pedestrian.cpp")
+      C:\Users\34657\Documents\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(37,8):
+      vea la declaración de 'Map'
+  
+C:\Users\34657\Documents\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Pedestrian.h(7,7): warning C4099: 'Map': nombre de tipo visto anteriormente usando 'struct' ahora se ve usando 'class'
+  (compilando archivo de origen "Pedestrian.cpp")
+      C:\Users\34657\Documents\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(37,8):
+      vea la declaración de 'Map'
+  
   Generando código...
   DoblasGerard_ZornozaHector_AA2_1.vcxproj -> C:\Users\34657\Documents\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\x64\Debug\DoblasGerard_ZornozaHector_AA2_1.exe

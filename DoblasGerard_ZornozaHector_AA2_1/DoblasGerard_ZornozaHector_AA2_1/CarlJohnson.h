@@ -7,7 +7,7 @@
 #include "Pedestrian.h"
 
 class Map;
-
+class Pedestrians;
 
 enum class CJMovement {
     UP,
@@ -32,13 +32,14 @@ public:
     Position prevPos;
     char CJLook;
 
-    void MoveCJ(int mapBorderX, int mapBorderY, Map& map, Pedestrians& pedestrians);
+    void MoveCJ(int mapBorderX, int mapBorderY, Map& map, Pedestrians& pedestrians, Settings& settings);
 
 private:
 
     CJMovement currentMove;
 
     void SetCJPos(int mapBorderX, int mapBorderY);
+    void GetMoney(Map& map, Settings& settings);
 
 };
 

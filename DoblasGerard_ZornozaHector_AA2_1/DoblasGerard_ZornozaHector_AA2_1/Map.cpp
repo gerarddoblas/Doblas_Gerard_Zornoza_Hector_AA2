@@ -29,9 +29,10 @@ Map::Map(const Settings& settings) {
                 box[i][j] = Boxes::PARED;
             }
             //Codigo con el que identificar los tercios del mapa
-           /* else if (j == tercioColumnas || j == tercioColumnas * 2) {
+           /*else if (j == tercioColumnas || j == tercioColumnas * 2) {
                 box[i][j] = Boxes::SEPARADOR;
-            }*/
+            }
+            */
         }
     }
 
@@ -77,10 +78,10 @@ void Map::PintarVista(Position playerPos) {
     cursorInfo.bVisible = false;
     SetConsoleCursorInfo(hConsole, &cursorInfo);
 
-    int clampedViewMinX = std::max<int>(0, playerPos.x - PLAYER_VIEW_RANGE_X);
-    int clampedViewMaxX = std::min<int>(mapBoundary_x, playerPos.x + PLAYER_VIEW_RANGE_X);
-    int clampedViewMinY = std::max<int>(0, playerPos.y - PLAYER_VIEW_RANGE_Y);
-    int clampedViewMaxY = std::min<int>(mapBoundary_y, playerPos.y + PLAYER_VIEW_RANGE_Y);
+    int clampedViewMinX = max<int>(0, playerPos.x - PLAYER_VIEW_RANGE_X);
+    int clampedViewMaxX = min<int>(mapBoundary_x, playerPos.x + PLAYER_VIEW_RANGE_X);
+    int clampedViewMinY = max<int>(0, playerPos.y - PLAYER_VIEW_RANGE_Y);
+    int clampedViewMaxY = min<int>(mapBoundary_y, playerPos.y + PLAYER_VIEW_RANGE_Y);
 
     for (int i = clampedViewMinY; i < clampedViewMaxY; i++) {
         for (int j = clampedViewMinX; j < clampedViewMaxX; j++) {
@@ -107,10 +108,10 @@ void Map::PintarVista(Position playerPos) {
                 SetConsoleTextAttribute(hConsole, 15);
                 break;
             }
-            std::cout << static_cast<char>(box[i][j]);
+            cout << static_cast<char>(box[i][j]);
             SetConsoleTextAttribute(hConsole, 15);
         }
-        std::cout << std::endl;
+        cout << endl;
     }
 }
 
@@ -147,9 +148,9 @@ void Map::PintarTodo() {
                 SetConsoleTextAttribute(hConsole, 15);
                 break;
             }
-            std::cout << static_cast<char>(box[i][j]);
+            cout << static_cast<char>(box[i][j]);
             SetConsoleTextAttribute(hConsole, 15);
         }
-        std::cout << std::endl;
+        cout << endl;
     }
 }

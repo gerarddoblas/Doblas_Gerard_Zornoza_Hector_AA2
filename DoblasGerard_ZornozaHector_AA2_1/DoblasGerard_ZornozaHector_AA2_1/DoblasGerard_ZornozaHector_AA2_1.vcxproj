@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CarlJohnson.cpp" />
-    <ClCompile Include="DoblasGerard_ZornozaHector_AA2_1.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Pedestrian.cpp" />

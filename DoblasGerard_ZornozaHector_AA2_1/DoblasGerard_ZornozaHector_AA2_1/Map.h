@@ -1,14 +1,15 @@
 #pragma once
 #include <iostream>
-#include <fstream>
 #include <Windows.h>
 #include <algorithm>
 #include "Types.h"
 #include "CarlJohnson.h"
 #include "FileReader.h"
 
+using namespace std;
+
 enum class Boxes {
-    VACIO = '.',
+    VACIO = ' ',
 
     PARED = 'X',
 
