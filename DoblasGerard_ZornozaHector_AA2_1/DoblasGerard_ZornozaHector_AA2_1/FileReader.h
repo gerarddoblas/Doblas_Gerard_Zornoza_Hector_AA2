@@ -6,8 +6,8 @@ using namespace std;
 struct Settings
 {
 public:
-	int FILAS;
-	int COLUMNAS;
+	int ROWS;
+	int COLUMNS;
 	int SANTOS_PEDESTRIANS_NUMBER;
 	int SANTOS_MONEY_REQUIRED;
 	int SANTOS_MAX_MONEY;
@@ -21,5 +21,5 @@ class FileReader
 public:
 	bool ReadSettings(const string& filename, Settings& settings);
 private:
-	void ComprobarFichero();
+	void CheckFiles();
 };

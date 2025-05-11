@@ -7,8 +7,8 @@
 #include "CarlJohnson.h"
 #include "FileReader.h"
 
-enum class Box {
-    VACIO = ' ',
+enum class Boxes {
+    VACIO = '.',
 
     PARED = 'X',
 
@@ -33,18 +33,15 @@ enum class Zones {
     LAS_VENTURAS,
 };
 
-struct Mapa {
+struct Map {
 public:
 
-    Mapa(const Settings& settings);
+    Map(const Settings& settings);
 
-    ~Mapa();
+    ~Map();
 
     void PintarVista(Position playerPos);
     void PintarTodo();
-    void UnlockBosque();
-    void UnlockCueva();
-    Zones GetZona(const Position& playerPos) const;
 
     int limiteMov_X;
     int limiteMov_Y;
@@ -52,22 +49,22 @@ public:
 
 
 
-    Box** boxes;
+    Boxes** box;
 
 
 private:
 
-    int FILAS;
-    int COLUMNAS;
+    int ROWS;
+    int COLUMNS;
     int SANTOS_PEDESTRIANS_NUMBER;
     int SANTOS_MONEY_REQUIRED;
     int FIERRO_PEDESTRIANS_NUMBER;
     int FIERRO_MONEY_REQUIRED;
 
-    int limiteMapa_x;
-    int limiteMapa_y;
+    int mapBoundary_x;
+    int mapBoundary_y;
 
-    const int RANGO_VISTA_JUGADOR_X = 22;
-    const int RANGO_VISTA_JUGADOR_Y = 12;
+    const int PLAYER_VIEW_RANGE_X = 22;
+    const int PLAYER_VIEW_RANGE_Y = 12;
 
 };

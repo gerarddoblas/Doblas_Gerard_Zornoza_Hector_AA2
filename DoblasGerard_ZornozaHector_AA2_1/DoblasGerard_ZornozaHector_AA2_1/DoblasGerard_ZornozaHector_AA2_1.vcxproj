@@ -127,15 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Carl Johnson.cpp" />
+    <ClCompile Include="CarlJohnson.cpp" />
     <ClCompile Include="DoblasGerard_ZornozaHector_AA2_1.cpp" />
     <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Pedestrian.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CarlJohnson.h" />
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Pedestrian.h" />
     <ClInclude Include="Types.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

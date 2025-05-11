@@ -1,42 +1,43 @@
 #include "Map.h"
 
 
-Mapa::Mapa(const Settings& settings) {
+Map::Map(const Settings& settings) {
     srand(time(0));
 
-    FILAS = settings.FILAS;
-    COLUMNAS = settings.COLUMNAS;
+    ROWS = settings.ROWS;
+    COLUMNS = settings.COLUMNS;
     SANTOS_PEDESTRIANS_NUMBER = settings.SANTOS_PEDESTRIANS_NUMBER;
     SANTOS_MONEY_REQUIRED = settings.SANTOS_MONEY_REQUIRED;
     FIERRO_PEDESTRIANS_NUMBER = settings.FIERRO_PEDESTRIANS_NUMBER;
     FIERRO_MONEY_REQUIRED = settings.FIERRO_MONEY_REQUIRED;
 
-    limiteMapa_x = settings.COLUMNAS;
-    limiteMapa_y = settings.FILAS;
-    limiteMov_X = settings.COLUMNAS / 2 + 1;
-    limiteMov_Y = settings.FILAS / 2 + 1;
+    mapBoundary_x = settings.COLUMNS;
+    mapBoundary_y = settings.ROWS;
+    limiteMov_X = settings.COLUMNS;
+    limiteMov_Y = settings.ROWS;
 
-    int tercioColumnas = settings.COLUMNAS / 3;
+    int tercioColumnas = settings.COLUMNS / 3;
 
-    boxes = new Box * [FILAS];
-    for (int i = 0; i < FILAS; ++i) {
-        boxes[i] = new Box[COLUMNAS];
+    box = new Boxes * [ROWS];
+    for (int i = 0; i < ROWS; ++i) {
+        box[i] = new Boxes[COLUMNS];
 
-        for (int j = 0; j < COLUMNAS; ++j) {
-            boxes[i][j] = Box::VACIO;
+        for (int j = 0; j < COLUMNS; ++j) {
+            box[i][j] = Boxes::VACIO;
 
-            if (i == 0 || j == 0 || i == FILAS - 1 || j == COLUMNAS - 1) {
-                boxes[i][j] = Box::PARED;
+            if (i == 0 || j == 0 || i == ROWS - 1 || j == COLUMNS - 1) {
+                box[i][j] = Boxes::PARED;
             }
-            else if (j == tercioColumnas || j == tercioColumnas*2) {
-                boxes[i][j] = Box::SEPARADOR;
-            }
+            //Codigo con el que identificar los tercios del mapa
+           /* else if (j == tercioColumnas || j == tercioColumnas * 2) {
+                box[i][j] = Boxes::SEPARADOR;
+            }*/
         }
     }
 
-    for (int i = 1; i < FILAS - 1; ++i) {
+    for (int i = 1; i < ROWS - 1; ++i) {
         for (int j = 1; j < tercioColumnas - 1; ++j) {
-            boxes[i][j] = Box::VACIO;
+            box[i][j] = Boxes::VACIO;
         }
     }
 
@@ -44,109 +45,69 @@ Mapa::Mapa(const Settings& settings) {
         int newPedestrianX, newPedestrianY;
         do {
             newPedestrianX = rand() % (tercioColumnas - 1) + 1;
-            newPedestrianY = rand() % (FILAS - 1) + 1;
-        } while (boxes[newPedestrianY][newPedestrianX] != Box::VACIO);
+            newPedestrianY = rand() % (ROWS - 1) + 1;
+        } while (box[newPedestrianY][newPedestrianX] != Boxes::VACIO);
 
-        boxes[newPedestrianY][newPedestrianX] = Box::PEATÓN;
+        box[newPedestrianY][newPedestrianX] = Boxes::PEATÓN;
     }
 
     for (int i = 0; i < FIERRO_PEDESTRIANS_NUMBER; i++) {
         int newPedestrianX, newPedestrianY;
         do {
             newPedestrianX = rand() % (tercioColumnas - 1) + tercioColumnas + 1;
-            newPedestrianY = rand() % (FILAS - 1) + 1;
-        } while (boxes[newPedestrianY][newPedestrianX] != Box::VACIO);
+            newPedestrianY = rand() % (ROWS - 1) + 1;
+        } while (box[newPedestrianY][newPedestrianX] != Boxes::VACIO);
 
-        boxes[newPedestrianY][newPedestrianX] = Box::PEATÓN;
+        box[newPedestrianY][newPedestrianX] = Boxes::PEATÓN;
     }
 }
 
-Mapa::~Mapa() {
-    for (int i = 0; i < FILAS; ++i) {
-        delete[] boxes[i];
+Map::~Map() {
+    for (int i = 0; i < ROWS; ++i) {
+        delete[] box[i];
     }
-    delete[] boxes;
+    delete[] box;
 }
 
 
-void Mapa::PintarVista(Position playerPos) {
+void Map::PintarVista(Position playerPos) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_CURSOR_INFO cursorInfo;
     GetConsoleCursorInfo(hConsole, &cursorInfo);
     cursorInfo.bVisible = false;
     SetConsoleCursorInfo(hConsole, &cursorInfo);
 
-    int clampedViewMinX = std::max<int>(0, playerPos.x - RANGO_VISTA_JUGADOR_X);
-    int clampedViewMaxX = std::min<int>(limiteMapa_x, playerPos.x + RANGO_VISTA_JUGADOR_X);
-    int clampedViewMinY = std::max<int>(0, playerPos.y - RANGO_VISTA_JUGADOR_Y);
-    int clampedViewMaxY = std::min<int>(limiteMapa_y, playerPos.y + RANGO_VISTA_JUGADOR_Y);
+    int clampedViewMinX = std::max<int>(0, playerPos.x - PLAYER_VIEW_RANGE_X);
+    int clampedViewMaxX = std::min<int>(mapBoundary_x, playerPos.x + PLAYER_VIEW_RANGE_X);
+    int clampedViewMinY = std::max<int>(0, playerPos.y - PLAYER_VIEW_RANGE_Y);
+    int clampedViewMaxY = std::min<int>(mapBoundary_y, playerPos.y + PLAYER_VIEW_RANGE_Y);
 
-    for (int i = clampedViewMinY; i <= clampedViewMaxY; i++) {
-        for (int j = clampedViewMinX; j <= clampedViewMaxX; j++) {
-            switch (boxes[i][j]) {
-            case Box::DIRECCION_IZQUIERDA:
-            case Box::DIRECCION_DERECHA:
-            case Box::DIRECCION_ABAJO:
-            case Box::DIRECCION_ARRIBA:
+    for (int i = clampedViewMinY; i < clampedViewMaxY; i++) {
+        for (int j = clampedViewMinX; j < clampedViewMaxX; j++) {
+            switch (box[i][j]) {
+            case Boxes::DIRECCION_IZQUIERDA:
+            case Boxes::DIRECCION_DERECHA:
+            case Boxes::DIRECCION_ABAJO:
+            case Boxes::DIRECCION_ARRIBA:
                 SetConsoleTextAttribute(hConsole, 12);
                 break;
-            case Box::PARED:
-                // SetConsoleTextAttribute(hConsole, 8);
-                break;
-            case Box::SEPARADOR:
-                SetConsoleTextAttribute(hConsole, 9);
-                break;
-            case Box::PEATÓN:
-                SetConsoleTextAttribute(hConsole, 10);
-                break;
-            case Box::DINERO:
-                SetConsoleTextAttribute(hConsole, 14);
-                break;
-            default:
-                SetConsoleTextAttribute(hConsole, 15);
-                break;
-            }
-            std::cout << static_cast<char>(boxes[i][j]);
-            SetConsoleTextAttribute(hConsole, 15);
-        }
-        std::cout << std::endl;
-    }
-}
-
-
-void Mapa::PintarTodo() {
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    CONSOLE_CURSOR_INFO cursorInfo;
-    GetConsoleCursorInfo(hConsole, &cursorInfo);
-    cursorInfo.bVisible = false;
-    SetConsoleCursorInfo(hConsole, &cursorInfo);
-
-    for (int i = 0; i < FILAS; i++) {
-        for (int j = 0; j < COLUMNAS; j++) {
-            switch (boxes[i][j]) {
-            case Box::DIRECCION_IZQUIERDA:
-            case Box::DIRECCION_DERECHA:
-            case Box::DIRECCION_ABAJO:
-            case Box::DIRECCION_ARRIBA:
-                SetConsoleTextAttribute(hConsole, 12);
-                break;
-            case Box::PARED:
+            case Boxes::PARED:
                 SetConsoleTextAttribute(hConsole, 8);
                 break;
-            case Box::SEPARADOR:
+            case Boxes::SEPARADOR:
                 SetConsoleTextAttribute(hConsole, 9);
                 break;
-            case Box::PEATÓN:
-                SetConsoleTextAttribute(hConsole, 13);
+            case Boxes::PEATÓN:
+                SetConsoleTextAttribute(hConsole, 10);
                 break;
-            case Box::DINERO:
+            case Boxes::DINERO:
                 SetConsoleTextAttribute(hConsole, 14);
                 break;
             default:
                 SetConsoleTextAttribute(hConsole, 15);
                 break;
             }
-            std::cout << static_cast<char>(boxes[i][j]);
+            std::cout << static_cast<char>(box[i][j]);
             SetConsoleTextAttribute(hConsole, 15);
         }
         std::cout << std::endl;
@@ -154,39 +115,41 @@ void Mapa::PintarTodo() {
 }
 
 
+void Map::PintarTodo() {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO cursorInfo;
+    GetConsoleCursorInfo(hConsole, &cursorInfo);
+    cursorInfo.bVisible = false;
+    SetConsoleCursorInfo(hConsole, &cursorInfo);
 
-void Mapa::UnlockBosque() {
-    limiteMapa_x = COLUMNAS - 1;
-    limiteMov_X = COLUMNAS - 1;
-    limiteMapa_y = FILAS - 1;
-
-    for (int i = 1; i < FILAS / 2; ++i) {
-        boxes[i][COLUMNAS / 2] = Box::VACIO;
-    }
-}
-
-void Mapa::UnlockCueva() {
-    limiteMapa_x = COLUMNAS - 1;
-    limiteMov_X = COLUMNAS - 1;
-    limiteMov_Y = FILAS - 1;
-    limiteMapa_y = FILAS - 1;
-
-    for (int i = COLUMNAS / 2; i < COLUMNAS - 1; ++i) {
-        boxes[FILAS / 2][i] = Box::VACIO;
-    }
-}
-
-Zones Mapa::GetZona(const Position& playerPos) const {
-    int mitadFilas = FILAS / 2;
-    int mitadColumnas = COLUMNAS / 2;
-
-    if (playerPos.x < mitadColumnas && playerPos.y < mitadFilas) {
-        return Zones::LOS_SANTOS;
-    }
-    else if (playerPos.x >= mitadColumnas && playerPos.y < mitadFilas) {
-        return Zones::SAN_FIERRO;
-    }
-    else{
-        return Zones::LAS_VENTURAS;
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLUMNS; j++) {
+            switch (box[i][j]) {
+            case Boxes::DIRECCION_IZQUIERDA:
+            case Boxes::DIRECCION_DERECHA:
+            case Boxes::DIRECCION_ABAJO:
+            case Boxes::DIRECCION_ARRIBA:
+                SetConsoleTextAttribute(hConsole, 12);
+                break;
+            case Boxes::PARED:
+                SetConsoleTextAttribute(hConsole, 8);
+                break;
+            case Boxes::SEPARADOR:
+                SetConsoleTextAttribute(hConsole, 9);
+                break;
+            case Boxes::PEATÓN:
+                SetConsoleTextAttribute(hConsole, 13);
+                break;
+            case Boxes::DINERO:
+                SetConsoleTextAttribute(hConsole, 14);
+                break;
+            default:
+                SetConsoleTextAttribute(hConsole, 15);
+                break;
+            }
+            std::cout << static_cast<char>(box[i][j]);
+            SetConsoleTextAttribute(hConsole, 15);
+        }
+        std::cout << std::endl;
     }
 }
