@@ -13,7 +13,7 @@ Map::Map(const Settings& settings) {
 
     mapBoundary_x = settings.COLUMNS;
     mapBoundary_y = settings.ROWS;
-    limiteMov_X = settings.COLUMNS;
+    limiteMov_X = (settings.COLUMNS / 3) + 1;
     limiteMov_Y = settings.ROWS;
 
     int tercioColumnas = settings.COLUMNS / 3;
@@ -28,11 +28,10 @@ Map::Map(const Settings& settings) {
             if (i == 0 || j == 0 || i == ROWS - 1 || j == COLUMNS - 1) {
                 box[i][j] = Boxes::PARED;
             }
-            //Codigo con el que identificar los tercios del mapa
-           /*else if (j == tercioColumnas || j == tercioColumnas * 2) {
-                box[i][j] = Boxes::SEPARADOR;
+            else if (j == tercioColumnas || j == tercioColumnas * 2) {
+                box[i][j] = Boxes::PEAJE;
             }
-            */
+
         }
     }
 
@@ -95,7 +94,7 @@ void Map::PintarVista(Position playerPos) {
             case Boxes::PARED:
                 SetConsoleTextAttribute(hConsole, 8);
                 break;
-            case Boxes::SEPARADOR:
+            case Boxes::PEAJE:
                 SetConsoleTextAttribute(hConsole, 9);
                 break;
             case Boxes::PEATÓN:
@@ -135,7 +134,7 @@ void Map::PintarTodo() {
             case Boxes::PARED:
                 SetConsoleTextAttribute(hConsole, 8);
                 break;
-            case Boxes::SEPARADOR:
+            case Boxes::PEAJE:
                 SetConsoleTextAttribute(hConsole, 9);
                 break;
             case Boxes::PEATÓN:
@@ -154,3 +153,25 @@ void Map::PintarTodo() {
         cout << endl;
     }
 }
+
+void Map::UnlockFierro() {
+    limiteMov_X = ((COLUMNS / 3) * 2) + 1;
+
+    for (int i = 1; i < ROWS; ++i) {
+        if (box[i][COLUMNS / 3] == Boxes::PEAJE)
+            box[i][COLUMNS / 3] = Boxes::VACIO;
+
+    }
+}
+
+void Map::UnlockVenturas() {
+    limiteMov_X = COLUMNS;
+
+    for (int i = 1; i < ROWS; ++i) {
+        if (box[i][(COLUMNS / 3) * 2] == Boxes::PEAJE)
+            box[i][(COLUMNS / 3) * 2] = Boxes::VACIO;
+
+    }
+}
+
+

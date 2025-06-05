@@ -13,11 +13,15 @@ enum class Boxes {
 
     PARED = 'X',
 
-    SEPARADOR = 'x',
+    PEAJE = 'T',
 
     PEATÓN = 'P',
 
     DINERO = '$',
+
+    COCHE = 'C',
+
+    BIGSMOKE = 'B',
 
     DIRECCION_IZQUIERDA = '<',
 
@@ -43,6 +47,8 @@ public:
 
     void PintarVista(Position playerPos);
     void PintarTodo();
+    void UnlockFierro();
+    void UnlockVenturas();
 
     int limiteMov_X;
     int limiteMov_Y;
@@ -69,3 +75,5 @@ private:
     const int PLAYER_VIEW_RANGE_Y = 12;
 
 };
+
+
