@@ -33,7 +33,7 @@ int main()
 
     bool gameIsOver = false;
 
-    while(!gameIsOver)
+    while (!gameIsOver)
     {
         if (GetAsyncKeyState(VK_ESCAPE)) {
             gameIsOver = true;
@@ -44,10 +44,12 @@ int main()
         m.box[cj.prevPos.y][cj.prevPos.x] = static_cast<Boxes>(Boxes::VACIO);
         m.box[cj.pos.y][cj.pos.x] = static_cast<Boxes>(cj.CJLook);
 
-        p.PedestrianManagment(cj.pos.x,cj.pos.y, m, settings);
+        p.PedestrianManagment(cj.pos.x, cj.pos.y, m, settings);
 
+        //  m.UnlockFierro();
+        //  m.UnlockVenturas();
         m.PintarVista(cj.pos);
-        gotoxy(0,60);
+        gotoxy(0, 60);
         cout << "Money: " << cj.money;
 
         Sleep(1000 / MAX_NUM_FPS);
@@ -55,3 +57,6 @@ int main()
 
     }
 }
+
+
+
