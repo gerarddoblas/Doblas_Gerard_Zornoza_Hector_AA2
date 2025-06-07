@@ -60,13 +60,23 @@ Map::Map(const Settings& settings) {
 
         box[newPedestrianY][newPedestrianX] = Boxes::PEATÓN;
     }
+
+    pedestrianHealth = new int* [ROWS];
+    for (int i = 0; i < ROWS; ++i) {
+        pedestrianHealth[i] = new int[COLUMNS];
+        for (int j = 0; j < COLUMNS; ++j) {
+            pedestrianHealth[i][j] = 0;
+        }
+    }
 }
 
 Map::~Map() {
     for (int i = 0; i < ROWS; ++i) {
         delete[] box[i];
+        delete[] pedestrianHealth[i];
     }
     delete[] box;
+    delete[] pedestrianHealth;
 }
 
 
@@ -173,5 +183,6 @@ void Map::UnlockVenturas() {
 
     }
 }
+
 
 

@@ -9,7 +9,7 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Archivos de recursos">
+    <Filter Include="Archivos de origen\Archivos de recursos">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
@@ -24,28 +24,40 @@
     <ClCompile Include="FileReader.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="CarlJohnson.cpp">
+    <ClCompile Include="Player.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Pedestrian.cpp">
+    <ClCompile Include="Walker.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Car.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Map.h">
-      <Filter>Archivos de recursos</Filter>
+      <Filter>Archivos de origen\Archivos de recursos</Filter>
     </ClInclude>
     <ClInclude Include="FileReader.h">
-      <Filter>Archivos de recursos</Filter>
+      <Filter>Archivos de origen\Archivos de recursos</Filter>
     </ClInclude>
-    <ClInclude Include="CarlJohnson.h">
-      <Filter>Archivos de recursos</Filter>
+    <ClInclude Include="Player.h">
+      <Filter>Archivos de origen\Archivos de recursos</Filter>
     </ClInclude>
     <ClInclude Include="Types.h">
-      <Filter>Archivos de recursos</Filter>
+      <Filter>Archivos de origen\Archivos de recursos</Filter>
     </ClInclude>
-    <ClInclude Include="Pedestrian.h">
-      <Filter>Archivos de recursos</Filter>
+    <ClInclude Include="Walker.h">
+      <Filter>Archivos de origen\Archivos de recursos</Filter>
+    </ClInclude>
+    <ClInclude Include="Car.h">
+      <Filter>Archivos de origen\Archivos de recursos</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>Archivos de origen</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

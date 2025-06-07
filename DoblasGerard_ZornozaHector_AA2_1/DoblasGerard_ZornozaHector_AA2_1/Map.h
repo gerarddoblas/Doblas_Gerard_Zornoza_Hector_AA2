@@ -3,7 +3,7 @@
 #include <Windows.h>
 #include <algorithm>
 #include "Types.h"
-#include "CarlJohnson.h"
+#include "Player.h"
 #include "FileReader.h"
 
 using namespace std;
@@ -57,7 +57,7 @@ public:
 
 
     Boxes** box;
-
+    int** pedestrianHealth;
 
 private:
 
@@ -75,5 +75,9 @@ private:
     const int PLAYER_VIEW_RANGE_Y = 12;
 
 };
+
+
+
+
 
 
