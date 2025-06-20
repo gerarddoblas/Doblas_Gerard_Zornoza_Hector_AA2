@@ -2,6 +2,7 @@
 #include <iostream>
 #include <Windows.h>
 #include <algorithm>
+#include <conio.h>
 #include "Types.h"
 #include "Player.h"
 #include "FileReader.h"

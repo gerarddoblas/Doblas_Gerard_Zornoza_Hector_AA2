@@ -1,82 +1,13 @@
-#include "FileReader.h"
 #include "Map.h"
 #include "Walker.h"
 #include "Car.h"
-#include <conio.h>
-
-const int MAX_NUM_FPS = 15;
-
-enum class GameScenes {
-    MAIN_MENU, 
-    SPLASH_SCREEN, 
-    GAMEPLAY, 
-    GAMEOVER
-};
-
-void gotoxy(int x, int y)
-{
-    COORD coord;
-    coord.X = x;
-    coord.Y = y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-}
-
-void ShowMainMenu(GameScenes& currentScene)
-{
-    int selectOption = 0;
-    bool selectionMade = false;
-
-    while (!selectionMade)
-    {
-        system("cls");
-        std::cout << R"( 
-___  ___      _        ___  ___                 
-|  \/  |     (_)       |  \/  |                 
-| .  . | __ _ _ _ __   | .  . | ___ _ __  _   _ 
-| |\/| |/ _` | | '_ \  | |\/| |/ _ \ '_ \| | | |
-| |  | | (_| | | | | | | |  | |  __/ | | | |_| |
-\_|  |_/\__,_|_|_| |_| \_|  |_/\___|_| |_|\__,_|
-
-)";
-        std::cout << (selectOption == 0 ? "> " : "  ") << "1. Play\n";
-        std::cout << (selectOption == 1 ? "> " : "  ") << "2. Exit\n";
-        std::cout << "\033[36m";
-
-
-        switch (_getch()) {
-        case 72:
-            selectOption = (selectOption - 1 + 2) % 2;
-            break;
-        case 80:
-            selectOption = (selectOption + 1) % 2;
-            break;
-        case 13:
-            if (selectOption == 0) {
-                currentScene = GameScenes::GAMEPLAY;
-            }
-            else {
-                exit(0);
-            }
-
-            selectionMade = true;
-
-            break;
-        }
-
-    }
-}
-
-void CloseConsole() {
-    HWND hwnd = GetConsoleWindow();
-    if (hwnd != NULL) {
-        PostMessage(hwnd, WM_CLOSE, 0, 0);
-    }
-}
+#include "GameManager.h"
 
 int main()
 {
     srand(time(NULL));
 
+    GameManager game;
     FileReader file;
     Settings settings;
     file.ReadSettings("config.txt", settings);
@@ -95,7 +26,7 @@ int main()
     {
         if (GetAsyncKeyState(VK_ESCAPE)) {
             gameIsOver = true;
-            CloseConsole();
+            game.CloseConsole();
             break;
         }
 
@@ -118,7 +49,7 @@ int main()
 
         case GameScenes::MAIN_MENU:
         {
-            ShowMainMenu(currentScene);
+            game.ShowMainMenu(currentScene);
             system("cls");
         }
         break;
