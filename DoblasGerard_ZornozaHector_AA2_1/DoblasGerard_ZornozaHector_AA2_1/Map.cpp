@@ -13,7 +13,7 @@ Map::Map(const Settings& settings) {
 
     mapBoundary_x = settings.COLUMNS;
     mapBoundary_y = settings.ROWS;
-    limiteMov_X = (settings.COLUMNS / 3) + 1;
+    limiteMov_X = (settings.COLUMNS / 3)+2;
     limiteMov_Y = settings.ROWS;
 
     int tercioColumnas = settings.COLUMNS / 3;
@@ -167,21 +167,21 @@ void Map::PintarTodo() {
 void Map::UnlockFierro() {
     limiteMov_X = ((COLUMNS / 3) * 2) + 1;
 
-    for (int i = 1; i < ROWS; ++i) {
+    /*for (int i = 1; i < ROWS; ++i) {
         if (box[i][COLUMNS / 3] == Boxes::PEAJE)
             box[i][COLUMNS / 3] = Boxes::VACIO;
 
-    }
+    }*/
 }
 
 void Map::UnlockVenturas() {
     limiteMov_X = COLUMNS;
 
-    for (int i = 1; i < ROWS; ++i) {
+    /*for (int i = 1; i < ROWS; ++i) {
         if (box[i][(COLUMNS / 3) * 2] == Boxes::PEAJE)
             box[i][(COLUMNS / 3) * 2] = Boxes::VACIO;
 
-    }
+    }*/
 }
 
 

@@ -21,6 +21,51 @@ void gotoxy(int x, int y)
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
+void ShowMainMenu(GameScenes& currentScene)
+{
+    int selectOption = 0;
+    bool selectionMade = false;
+
+    while (!selectionMade)
+    {
+        system("cls");
+        std::cout << R"( 
+___  ___      _        ___  ___                 
+|  \/  |     (_)       |  \/  |                 
+| .  . | __ _ _ _ __   | .  . | ___ _ __  _   _ 
+| |\/| |/ _` | | '_ \  | |\/| |/ _ \ '_ \| | | |
+| |  | | (_| | | | | | | |  | |  __/ | | | |_| |
+\_|  |_/\__,_|_|_| |_| \_|  |_/\___|_| |_|\__,_|
+
+)";
+        std::cout << (selectOption == 0 ? "> " : "  ") << "1. Play\n";
+        std::cout << (selectOption == 1 ? "> " : "  ") << "2. Exit\n";
+        std::cout << "\033[36m";
+
+
+        switch (_getch()) {
+        case 72:
+            selectOption = (selectOption - 1 + 2) % 2;
+            break;
+        case 80:
+            selectOption = (selectOption + 1) % 2;
+            break;
+        case 13:
+            if (selectOption == 0) {
+                currentScene = GameScenes::GAMEPLAY;
+            }
+            else {
+                exit(0);
+            }
+
+            selectionMade = true;
+
+            break;
+        }
+
+    }
+}
+
 void CloseConsole() {
     HWND hwnd = GetConsoleWindow();
     if (hwnd != NULL) {
@@ -40,7 +85,7 @@ int main()
     Walkers p;
     Cars c;
     GameScenes currentScene = GameScenes::SPLASH_SCREEN;
- 
+
 
     bool gameIsOver = false;
     float splashScreeenTimer = 0.0f;
@@ -57,58 +102,53 @@ int main()
         switch (currentScene)
         {
         case GameScenes::SPLASH_SCREEN:
+        {
             system("cls");
-            std::cout << "========BIENVENIDO A GTA ENTI CITY========="<< std::endl;
+            std::cout << "\033[38;5;208m";
+            std::cout << R"()";
+            std::cout << "\033[0m";
+            std::cout << R"()";
+
+
             Sleep(3000);
             system("cls");
             currentScene = GameScenes::MAIN_MENU;
-            break;
+        }
+        break;
 
-            case GameScenes::MAIN_MENU:
-                std::cout << "========BIENVENIDO A GTA ENTI CITY=========" << std::endl;
-                std::cout << std::endl;
-                std::cout << std::endl;
-                std::cout << std::endl;
-                std::cout << std::endl;
-                std::cout << std::endl;
-                std::cout << std::endl;
-                std::cout << "                   Play" << std::endl;
-                std::cout << "                   Exit" << std::endl;
-                std::cout << "Esc to exit " << std::endl;
-                std::cout << "1 to play" << std::endl;
+        case GameScenes::MAIN_MENU:
+        {
+            ShowMainMenu(currentScene);
+            system("cls");
+        }
+        break;
+        case GameScenes::GAMEPLAY:
+        {
+            cj.MoveCJ(m.limiteMov_X, m.limiteMov_Y, m, p, settings, c);
+            m.box[cj.prevPos.y][cj.prevPos.x] = static_cast<Boxes>(Boxes::VACIO);
+            m.box[cj.pos.y][cj.pos.x] = static_cast<Boxes>(cj.CJLook);
 
-                std::cin >> inputMainMenu;
+            p.WalkerManagment(cj.pos.x, cj.pos.y, m, settings);
+            c.CarsManagment(m, settings);
+            //Aqui va la funcion management del boss
+            if (cj.money >= settings.FIERRO_MONEY_REQUIRED && m.box[cj.pos.y][cj.pos.x] == Boxes::PEAJE)
+            {
+                m.UnlockFierro();
 
-                if (inputMainMenu == 1) {
-                    currentScene = GameScenes::GAMEPLAY;
-                    std::cout << "Loading game";
-                }
-                break;
-              
-            case GameScenes::GAMEPLAY:
-                cj.MoveCJ(m.limiteMov_X, m.limiteMov_Y, m, p, settings, c);
-                m.box[cj.prevPos.y][cj.prevPos.x] = static_cast<Boxes>(Boxes::VACIO);
-                m.box[cj.pos.y][cj.pos.x] = static_cast<Boxes>(cj.CJLook);
+            }
+            else if(m.box[cj.pos.y][cj.pos.x] == Boxes::PEAJE)
+            {
+               exit(0);
+            }
 
-                p.WalkerManagment(cj.pos.x, cj.pos.y, m, settings);
-                c.CarsManagment(m, settings);
+            m.PintarVista(cj.pos);
+            Sleep(1000 / MAX_NUM_FPS);
+            system("cls");
 
-                if (cj.money >= 150)
-                    m.UnlockFierro();
+            
+        }
 
-                if(cj.money >= 350)
-                    m.UnlockVenturas();
 
-                m.PintarVista(cj.pos);
-                gotoxy(0, 60);
-                std::cout << "Money: " << cj.money;
-
-                Sleep(1000 / MAX_NUM_FPS);
-                system("cls");
-                break;
         }
     }
 }
-
-
-
