@@ -48,8 +48,6 @@ private:
 
     CJMovement currentMove;
 
-
-
     void SetCJPos(int mapBorderX, int mapBorderY);
     void GetMoney(Map& map, Settings& settings);
     void WalkersMoneyCars(Map& map, Settings& settings);
