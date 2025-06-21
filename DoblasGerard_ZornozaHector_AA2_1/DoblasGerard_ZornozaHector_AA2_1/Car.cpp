@@ -1,6 +1,6 @@
 #include "Car.h"
 
-void Cars::CarsManagment(Map& map, Settings& settings)
+void Cars::CarsManagment(Map& map, const Settings& settings)
 {
     CarInSantos = 0;
     for (int i = 0; i < settings.ROWS; ++i) {
@@ -31,7 +31,6 @@ void Cars::CarsManagment(Map& map, Settings& settings)
     }
 
     if (CarInFierro < settings.FIERRO_CAR) {
-        newCarX, newCarY;
         do {
             newCarX = rand() % (settings.COLUMNS / 3 - 1) + settings.COLUMNS / 3 - 1;
             newCarY = rand() % (settings.ROWS - 1) + 1;

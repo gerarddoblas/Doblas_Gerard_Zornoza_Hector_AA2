@@ -10,10 +10,11 @@ Map::Map(const Settings& settings) {
     SANTOS_MONEY_REQUIRED = settings.SANTOS_MONEY_REQUIRED;
     FIERRO_PEDESTRIANS_NUMBER = settings.FIERRO_PEDESTRIANS_NUMBER;
     FIERRO_MONEY_REQUIRED = settings.FIERRO_MONEY_REQUIRED;
+    VENTURAS_PEDESTRIANS_NUMBER = settings.VENTURAS_PEDESTRIANS_NUMBER;
 
     mapBoundary_x = settings.COLUMNS;
     mapBoundary_y = settings.ROWS;
-    limiteMov_X = (settings.COLUMNS / 3)+2;
+    limiteMov_X = (settings.COLUMNS / 3) + 2;
     limiteMov_Y = settings.ROWS;
 
     int tercioColumnas = settings.COLUMNS / 3;
@@ -42,43 +43,49 @@ Map::Map(const Settings& settings) {
     }
 
     for (int i = 0; i < SANTOS_PEDESTRIANS_NUMBER; i++) {
-        int newPedestrianX, newPedestrianY;
+        int newWalkerX, newWalkerY;
         do {
-            newPedestrianX = rand() % (tercioColumnas - 1) + 1;
-            newPedestrianY = rand() % (ROWS - 1) + 1;
-        } while (box[newPedestrianY][newPedestrianX] != Boxes::VACIO);
+            newWalkerX = rand() % (tercioColumnas - 1) + 1;
+            newWalkerY = rand() % (ROWS - 1) + 1;
+        } while (box[newWalkerY][newWalkerX] != Boxes::VACIO);
 
-        box[newPedestrianY][newPedestrianX] = Boxes::PEATÓN;
+        box[newWalkerY][newWalkerX] = Boxes::PEATÓN;
     }
 
     for (int i = 0; i < FIERRO_PEDESTRIANS_NUMBER; i++) {
-        int newPedestrianX, newPedestrianY;
+        int newWalkerX, newWalkerY;
         do {
-            newPedestrianX = rand() % (tercioColumnas - 1) + tercioColumnas + 1;
-            newPedestrianY = rand() % (ROWS - 1) + 1;
-        } while (box[newPedestrianY][newPedestrianX] != Boxes::VACIO);
+            newWalkerX = rand() % (tercioColumnas - 1) + tercioColumnas + 1;
+            newWalkerY = rand() % (ROWS - 1) + 1;
+        } while (box[newWalkerY][newWalkerX] != Boxes::VACIO);
 
-        box[newPedestrianY][newPedestrianX] = Boxes::PEATÓN;
+        box[newWalkerY][newWalkerX] = Boxes::PEATÓN;
     }
 
-    pedestrianHealth = new int* [ROWS];
-    for (int i = 0; i < ROWS; ++i) {
-        pedestrianHealth[i] = new int[COLUMNS];
-        for (int j = 0; j < COLUMNS; ++j) {
-            pedestrianHealth[i][j] = 0;
-        }
+    for (int i = 0; i < VENTURAS_PEDESTRIANS_NUMBER; i++) {
+        int newWalkerX, newWalkerY;
+        do {
+            newWalkerX = rand() % (tercioColumnas - 1) + (tercioColumnas * 2) + 1;
+            newWalkerY = rand() % (ROWS - 1) + 1;
+        } while (box[newWalkerY][newWalkerX] != Boxes::VACIO);
+
+        box[newWalkerY][newWalkerX] = Boxes::PEATÓN;
     }
+
+    do {
+        newBossX = rand() % (tercioColumnas - 1) + (tercioColumnas * 2) + 1;
+        newBossY = rand() % (settings.ROWS - 1) + 1;
+    } while (box[newBossY][newBossX] != Boxes::VACIO);
+
+    box[newBossY][newBossX] = Boxes::BIGSMOKE;
 }
 
 Map::~Map() {
     for (int i = 0; i < ROWS; ++i) {
         delete[] box[i];
-        delete[] pedestrianHealth[i];
     }
     delete[] box;
-    delete[] pedestrianHealth;
 }
-
 
 void Map::PintarVista(Position playerPos) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -123,8 +130,6 @@ void Map::PintarVista(Position playerPos) {
         cout << endl;
     }
 }
-
-
 void Map::PintarTodo() {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_CURSOR_INFO cursorInfo;
@@ -165,24 +170,13 @@ void Map::PintarTodo() {
 }
 
 void Map::UnlockFierro() {
-    limiteMov_X = ((COLUMNS / 3) * 2) + 1;
+    limiteMov_X = ((COLUMNS / 3) * 2) + 2;
 
-    /*for (int i = 1; i < ROWS; ++i) {
-        if (box[i][COLUMNS / 3] == Boxes::PEAJE)
-            box[i][COLUMNS / 3] = Boxes::VACIO;
-
-    }*/
+  
 }
 
 void Map::UnlockVenturas() {
     limiteMov_X = COLUMNS;
 
-    /*for (int i = 1; i < ROWS; ++i) {
-        if (box[i][(COLUMNS / 3) * 2] == Boxes::PEAJE)
-            box[i][(COLUMNS / 3) * 2] = Boxes::VACIO;
-
-    }*/
+   
 }
-
-
-

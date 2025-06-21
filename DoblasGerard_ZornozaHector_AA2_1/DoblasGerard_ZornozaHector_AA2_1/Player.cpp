@@ -1,11 +1,15 @@
 #include "Player.h"
 
+CJ::CJ(Settings& settings) {
 
-CJ::CJ() {
+    health = settings.PLAYER_HP;
     money = 0;
     pos.x = this->prevPos.x = 11;
     pos.y = this->prevPos.y = 37;
     CJLook = '^';
+    walkerHurt = false;
+    bossHurt = false;
+    chance = 40;//rand() % 100;
     currentMove = CJMovement::NONE;
     driving = CJDrive::WALK;
 }
@@ -69,6 +73,10 @@ void CJ::GetMoney(Map& map, Settings& settings)
     {
         money = money + rand() % (settings.FIERRO_MAX_MONEY) + 1;
     }
+    else if (pos.x > settings.COLUMNS / 3 * 2 && map.box[pos.y][pos.x] == Boxes::DINERO)
+    {
+        money = money + rand() % (settings.VENTURAS_MAX_MONEY) + 1;
+    }
 }
 
 void CJ::WalkersMoneyCars(Map& map, Settings& settings)
@@ -107,7 +115,56 @@ void CJ::WalkersMoneyCars(Map& map, Settings& settings)
     }
 }
 
-void CJ::MoveCJ(int mapBorderX, int mapBorderY, Map& map, Walkers& pedestrians, Settings& settings, Cars& cars) {
+void CJ::PlayerAttack(Walkers& walkers, Map& map, Settings& settings, Boss& boss)
+{
+    walkerHurt = true;
+    if (walkers.WalkerFound(pos.x, pos.y, map))
+    {
+        if (pos.x < settings.COLUMNS / 3)
+        {
+            walkers.healthSantos = walkers.healthSantos - settings.PLAYER_DM;
+
+            if (walkers.healthSantos <= 0)
+            {
+                walkers.healthSantos = settings.SANTOS_HP;
+                walkers.WalkerReward(pos.x, pos.y, map);
+                walkerHurt = false;
+                chance = rand() % 100;
+            }
+        }
+        else if (pos.x < (settings.COLUMNS / 3) * 2)
+        {
+            walkers.healthFierro = walkers.healthFierro - settings.PLAYER_DM;
+
+            if (walkers.healthFierro <= 0)
+            {
+                walkers.healthFierro = settings.FIERRO_HP;
+                walkers.WalkerReward(pos.x, pos.y, map);
+                walkerHurt = false;
+                chance = rand() % 100;
+            }
+        }
+        else if (pos.x > (settings.COLUMNS / 3) * 2)
+        {
+            walkers.healthVenturas = walkers.healthVenturas - settings.PLAYER_DM;
+
+            if (walkers.healthVenturas <= 0)
+            {
+                walkers.healthVenturas = settings.VENTURAS_HP;
+                walkers.WalkerReward(pos.x, pos.y, map);
+                walkerHurt = false;
+                chance = rand() % 100;
+            }
+        }
+    }
+    if (boss.BossFound(pos.x, pos.y, map))
+    {
+        bossHurt = true;
+        boss.health = boss.health - settings.PLAYER_DM;
+    }
+}
+
+void CJ::MoveCJ(int mapBorderX, int mapBorderY, Map& map, Walkers& walkers, Settings& settings, Cars& cars, Boss& boss) {
     if (driving == CJDrive::WALK)
     {
         if (GetAsyncKeyState(VK_E) & 0x8000)
@@ -117,15 +174,15 @@ void CJ::MoveCJ(int mapBorderX, int mapBorderY, Map& map, Walkers& pedestrians, 
             cars.GetCar(pos.x, pos.y, map, *this);
         }
         else if (GetAsyncKeyState(VK_SPACE))
-            pedestrians.WalkerHunting(pos.x, pos.y, map, settings);
+            PlayerAttack(walkers, map, settings, boss);
         else if (GetAsyncKeyState(VK_ESCAPE));
-        else if (GetAsyncKeyState(VK_UP) && (map.box[pos.y - 1][pos.x] != Boxes::PEATÓN) && (map.box[pos.y - 1][pos.x] != Boxes::COCHE))
+        else if (GetAsyncKeyState(VK_UP) && (map.box[pos.y - 1][pos.x] != Boxes::PEATÓN) && (map.box[pos.y - 1][pos.x] != Boxes::COCHE) && (map.box[pos.y - 1][pos.x] != Boxes::BIGSMOKE))
             currentMove = CJMovement::UP;
-        else if (GetAsyncKeyState(VK_DOWN) && (map.box[pos.y + 1][pos.x] != Boxes::PEATÓN) && (map.box[pos.y + 1][pos.x] != Boxes::COCHE))
+        else if (GetAsyncKeyState(VK_DOWN) && (map.box[pos.y + 1][pos.x] != Boxes::PEATÓN) && (map.box[pos.y + 1][pos.x] != Boxes::COCHE) && (map.box[pos.y + 1][pos.x] != Boxes::BIGSMOKE))
             currentMove = CJMovement::DOWN;
-        else if (GetAsyncKeyState(VK_LEFT) && (map.box[pos.y][pos.x - 1] != Boxes::PEATÓN) && (map.box[pos.y][pos.x - 1] != Boxes::COCHE))
+        else if (GetAsyncKeyState(VK_LEFT) && (map.box[pos.y][pos.x - 1] != Boxes::PEATÓN) && (map.box[pos.y][pos.x - 1] != Boxes::COCHE) && (map.box[pos.y][pos.x - 1] != Boxes::BIGSMOKE))
             currentMove = CJMovement::LEFT;
-        else if (GetAsyncKeyState(VK_RIGHT) && (map.box[pos.y][pos.x + 1] != Boxes::PEATÓN) && (map.box[pos.y][pos.x + 1] != Boxes::COCHE))
+        else if (GetAsyncKeyState(VK_RIGHT) && (map.box[pos.y][pos.x + 1] != Boxes::PEATÓN) && (map.box[pos.y][pos.x + 1] != Boxes::COCHE) && (map.box[pos.y][pos.x + 1] != Boxes::BIGSMOKE))
             currentMove = CJMovement::RIGHT;
     }
     else
@@ -137,13 +194,13 @@ void CJ::MoveCJ(int mapBorderX, int mapBorderY, Map& map, Walkers& pedestrians, 
             cars.OutCar(map, *this);
         }
         else if (GetAsyncKeyState(VK_ESCAPE));
-        else if (GetAsyncKeyState(VK_UP) && (map.box[pos.y - 1][pos.x] != Boxes::DINERO))
+        else if (GetAsyncKeyState(VK_UP) && (map.box[pos.y - 1][pos.x] != Boxes::DINERO) && (map.box[pos.y - 1][pos.x] != Boxes::BIGSMOKE))
             currentMove = CJMovement::UP;
-        else if (GetAsyncKeyState(VK_DOWN) && (map.box[pos.y + 1][pos.x] != Boxes::DINERO))
+        else if (GetAsyncKeyState(VK_DOWN) && (map.box[pos.y + 1][pos.x] != Boxes::DINERO) && (map.box[pos.y + 1][pos.x] != Boxes::BIGSMOKE))
             currentMove = CJMovement::DOWN;
-        else if (GetAsyncKeyState(VK_LEFT) && (map.box[pos.y][pos.x - 1] != Boxes::DINERO))
+        else if (GetAsyncKeyState(VK_LEFT) && (map.box[pos.y][pos.x - 1] != Boxes::DINERO) && (map.box[pos.y][pos.x - 1] != Boxes::BIGSMOKE))
             currentMove = CJMovement::LEFT;
-        else if (GetAsyncKeyState(VK_RIGHT) && (map.box[pos.y][pos.x + 1] != Boxes::DINERO))
+        else if (GetAsyncKeyState(VK_RIGHT) && (map.box[pos.y][pos.x + 1] != Boxes::DINERO) && (map.box[pos.y][pos.x + 1] != Boxes::BIGSMOKE))
             currentMove = CJMovement::RIGHT;
     }
 

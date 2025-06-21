@@ -1,7 +1,10 @@
 #include "Map.h"
 #include "Walker.h"
 #include "Car.h"
+#include "ConsolUtils.h"
 #include "GameManager.h"
+#include "Boss.h"
+#include "Player.h"
 
 int main()
 {
@@ -12,9 +15,10 @@ int main()
     Settings settings;
     file.ReadSettings("config.txt", settings);
     Map m(settings);
-    CJ cj;
-    Walkers p;
+    CJ cj(settings);
+    Walkers w(settings);
     Cars c;
+    Boss b(settings, m);
     GameScenes currentScene = GameScenes::SPLASH_SCREEN;
 
 
@@ -26,7 +30,7 @@ int main()
     {
         if (GetAsyncKeyState(VK_ESCAPE)) {
             gameIsOver = true;
-            game.CloseConsole();
+            CloseConsole();
             break;
         }
 
@@ -35,12 +39,7 @@ int main()
         case GameScenes::SPLASH_SCREEN:
         {
             system("cls");
-            std::cout << "\033[38;5;208m";
-            std::cout << R"()";
-            std::cout << "\033[0m";
-            std::cout << R"()";
-
-
+            game.SplashScreen();
             Sleep(3000);
             system("cls");
             currentScene = GameScenes::MAIN_MENU;
@@ -49,62 +48,66 @@ int main()
 
         case GameScenes::MAIN_MENU:
         {
+            system("cls");
             game.ShowMainMenu(currentScene);
+            if (currentScene == GameScenes::GAMEPLAY) {
+                
+                m.~Map();                  
+                new(&m) Map(settings);      
+                cj.~CJ();
+                new(&cj) CJ(settings);
+                w.~Walkers();
+                new(&w) Walkers(settings);
+                b.~Boss();
+                new(&b) Boss(settings, m);
+            }
             system("cls");
         }
         break;
         case GameScenes::GAMEPLAY:
         {
-            cj.MoveCJ(m.limiteMov_X, m.limiteMov_Y, m, p, settings, c);
-            if (cj.money >= settings.FIERRO_MONEY_REQUIRED && m.box[cj.pos.y][cj.pos.x] == Boxes::PEAJE)
+            cj.MoveCJ(m.limiteMov_X, m.limiteMov_Y, m, w, settings, c, b);
+            if (cj.health <= 0)
+                currentScene = GameScenes::GAMEOVER;
+            if (b.health <= 0)
+                currentScene = GameScenes::GAMEOVER;
+            if (cj.money < settings.SANTOS_MONEY_REQUIRED && m.box[cj.pos.y][cj.pos.x] == Boxes::PEAJE && m.limiteMov_X == (settings.COLUMNS / 3) + 2)
+            {
+                currentScene = GameScenes::GAMEOVER;
+            }
+            else if (m.limiteMov_X == (settings.COLUMNS / 3) + 2 && m.box[cj.pos.y][cj.pos.x] == Boxes::PEAJE && m.limiteMov_X == (settings.COLUMNS / 3) + 2)
             {
                 m.UnlockFierro();
-
+                cj.money = cj.money -= settings.SANTOS_MONEY_REQUIRED;
             }
-            else if (m.box[cj.pos.y][cj.pos.x] == Boxes::PEAJE)
+            if (cj.money < settings.FIERRO_MONEY_REQUIRED && m.box[cj.pos.y][cj.pos.x] == Boxes::PEAJE && cj.pos.x > settings.COLUMNS / 3 + 3 && m.limiteMov_X == ((settings.COLUMNS / 3) * 2) + 2)
             {
-                exit(0);
+                currentScene = GameScenes::GAMEOVER;
             }
-            m.box[cj.prevPos.y][cj.prevPos.x] = static_cast<Boxes>(Boxes::VACIO);
-            m.box[cj.pos.y][cj.pos.x] = static_cast<Boxes>(cj.CJLook);
-
-            p.WalkerManagment(cj.pos.x, cj.pos.y, m, settings);
-            c.CarsManagment(m, settings);
-            //Aqui va la funcion management del boss
-            
-
-            m.PintarVista(cj.pos);
+            else if (m.box[cj.pos.y][cj.pos.x] == Boxes::PEAJE && m.limiteMov_X == ((settings.COLUMNS / 3) * 2) + 2 && cj.pos.x > settings.COLUMNS / 3 + 3)
+            {
+                m.UnlockVenturas();
+                cj.money = cj.money -= settings.FIERRO_MONEY_REQUIRED;
+            }
+            game.Game(cj, m, settings, w, b, c);
             Sleep(1000 / MAX_NUM_FPS);
             system("cls");
 
-            
         }
         break;
 
         case GameScenes::GAMEOVER:
         {
             system("cls");
-            std::cout << "\033[38;5;153m";
-            std::cout << R"()";
-            std::cout << "\033[0m";
-            std::cout << R"(
-   _____                       ____                 
-  / ____|                     / __ \                
- | |  __  __ _ _ __ ___   ___| |  | |_   _____ _ __ 
- | | |_ |/ _` | '_ ` _ \ / _ \ |  | \ \ / / _ \ '__|
- | |__| | (_| | | | | | |  __/ |__| |\ V /  __/ |   
-  \_____|\__,_|_| |_| |_|\___|\____/  \_/ \___|_| 
-            
-)";
+            game.GameOver(cj, settings, m, w, b, c);
             Sleep(5000);
             currentScene = GameScenes::MAIN_MENU;
         }
-            break;
+        break;
         default:
 
             break;
         }
     }
-
     return 0;
 }

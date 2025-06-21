@@ -9,15 +9,28 @@ class Map;
 class Walkers {
 public:
 
-    void WalkerManagment(int cJX, int cJY, Map& map, Settings& settings);
-    void WalkerFound(int posX, int posY, Map& map);
-    void WalkerHunting(int pedestrianX, int pedestrianY, Map& map, Settings& settings);
-    void WalkerAttack(int cJX, int cJY, Map& map, Settings& settings, int& playerHealth);
+
+    int x;
+    int y;
+    int healthSantos;
+    int healthFierro;
+    int healthVenturas;
+    int damage;
+
+    Walkers(Settings& settings);
+
+    ~Walkers();
+
+    void WalkerManagment(int cJX, int cJY, Map& map, const Settings& settings);
+    void WalkerReward(int posX, int posY, Map& map);
+    bool WalkerFound(int posX, int posY, Map& map);
+    void WalkerAttack(int pedestrianX, int pedestrianY, int& CJ_HP, Map& map, const Settings& settings);
 
 protected:
 
     int WalkersInSantos;
     int WalkersInFierro;
+    int WalkersInVenturas;
     int newWalkerX;
     int newWalkerY;
 
@@ -25,13 +38,13 @@ protected:
     int maxTime;
     int waitTime;
 
-
     chrono::time_point<chrono::system_clock> now;
     chrono::duration<double> elapsed_seconds;
     chrono::time_point<chrono::system_clock> lastMoveTime;
     std::chrono::time_point<std::chrono::system_clock> lastAttackTime;
 
-    void WalkerMove(int cJX, int cJY, Map& map, Settings& settings);
+    void WalkerMove(int cJX, int cJY, Map& map, const Settings& settings);
     bool WalkerStop(int cJX, int cJY, int pedestrianX, int pedestrianY);
 };
+
 

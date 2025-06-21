@@ -16,7 +16,9 @@ private:
     int y;
     GameScenes currentScene;
 public:
-    void gotoxy(int x, int y);
     void ShowMainMenu(GameScenes& currentScene);
-    void CloseConsole();
+    void PrintZone(int posX, const Settings& settings);
+    void SplashScreen();
+    void Game(CJ& cj, Map& m, Settings& settings, Walkers& w, Boss& b, Cars& c);
+    void GameOver(CJ& cj, Settings& settings, Map& m, Walkers& w, Boss& b, Cars& c);
 };

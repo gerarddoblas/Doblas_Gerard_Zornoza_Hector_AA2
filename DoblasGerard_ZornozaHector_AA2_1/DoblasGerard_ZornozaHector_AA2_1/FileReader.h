@@ -27,6 +27,8 @@ public:
 	int VENTURAS_HP;
 	int VENTURAS_DM;
 	int VENTURAS_CAR;
+	int BIGSMOKE_HP;
+	int BIGSMOKE_DM;
 };
 
 class FileReader

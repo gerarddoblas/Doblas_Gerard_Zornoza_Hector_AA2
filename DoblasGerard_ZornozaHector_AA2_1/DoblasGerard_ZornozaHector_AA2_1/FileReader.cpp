@@ -14,7 +14,8 @@ bool FileReader::ReadSettings(const string& filename, Settings& settings)
         >> settings.SANTOS_MONEY_REQUIRED >> aux >> settings.FIERRO_MONEY_REQUIRED >> aux
         >> settings.SANTOS_PEDESTRIANS_NUMBER >> aux >> settings.SANTOS_MAX_MONEY >> aux >> settings.SANTOS_HP >> aux >> settings.SANTOS_DM >> aux >> settings.SANTOS_CAR >> aux
         >> settings.FIERRO_PEDESTRIANS_NUMBER >> aux >> settings.FIERRO_MAX_MONEY >> aux >> settings.FIERRO_HP >> aux >> settings.FIERRO_DM >> aux >> settings.FIERRO_CAR >> aux
-        >> settings.VENTURAS_PEDESTRIANS_NUMBER >> aux >> settings.VENTURAS_MAX_MONEY >> aux >> settings.VENTURAS_HP >> aux >> settings.VENTURAS_DM >> aux >> settings.VENTURAS_CAR >> aux;
+        >> settings.VENTURAS_PEDESTRIANS_NUMBER >> aux >> settings.VENTURAS_MAX_MONEY >> aux >> settings.VENTURAS_HP >> aux >> settings.VENTURAS_DM >> aux >> settings.VENTURAS_CAR >> aux
+        >> settings.BIGSMOKE_HP >> aux >> settings.BIGSMOKE_DM >> aux;
 
     myFile.close();
     return true;

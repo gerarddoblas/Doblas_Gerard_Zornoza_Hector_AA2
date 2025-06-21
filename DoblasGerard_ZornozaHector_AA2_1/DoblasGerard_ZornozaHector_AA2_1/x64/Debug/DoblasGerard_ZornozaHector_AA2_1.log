@@ -1,91 +1,14 @@
-﻿  Car.cpp
-C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(42,8): warning C4099: 'Map': nombre de tipo visto anteriormente usando 'class' ahora se ve usando 'struct'
-  (compilando archivo de origen "Car.cpp")
-      C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(42,8):
-      vea la declaración de 'Map'
-  
-C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Car.h(6,7): warning C4099: 'Map': nombre de tipo visto anteriormente usando 'struct' ahora se ve usando 'class'
-  (compilando archivo de origen "Car.cpp")
-      C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(42,8):
-      vea la declaración de 'Map'
-  
-C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Car.h(7,7): warning C4099: 'CJ': nombre de tipo visto anteriormente usando 'struct' ahora se ve usando 'class'
-  (compilando archivo de origen "Car.cpp")
-      C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Player.h(34,8):
-      vea la declaración de 'CJ'
-  
-  GameManager.cpp
-C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Player.h(34,8): warning C4099: 'CJ': nombre de tipo visto anteriormente usando 'class' ahora se ve usando 'struct'
-  (compilando archivo de origen "GameManager.cpp")
-      C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Player.h(34,8):
-      vea la declaración de 'CJ'
-  
-C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(42,8): warning C4099: 'Map': nombre de tipo visto anteriormente usando 'class' ahora se ve usando 'struct'
-  (compilando archivo de origen "GameManager.cpp")
-      C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(42,8):
-      vea la declaración de 'Map'
-  
-  Player.cpp
-C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Walker.h(7,7): warning C4099: 'Map': nombre de tipo visto anteriormente usando 'struct' ahora se ve usando 'class'
-  (compilando archivo de origen "Player.cpp")
-      C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(42,8):
-      vea la declaración de 'Map'
-  
-C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Car.h(6,7): warning C4099: 'Map': nombre de tipo visto anteriormente usando 'struct' ahora se ve usando 'class'
-  (compilando archivo de origen "Player.cpp")
-      C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(42,8):
-      vea la declaración de 'Map'
-  
-C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Player.h(12,7): warning C4099: 'Map': nombre de tipo visto anteriormente usando 'struct' ahora se ve usando 'class'
-  (compilando archivo de origen "Player.cpp")
-      C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(42,8):
-      vea la declaración de 'Map'
-  
-C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Player.h(34,8): warning C4099: 'CJ': nombre de tipo visto anteriormente usando 'class' ahora se ve usando 'struct'
-  (compilando archivo de origen "Player.cpp")
-      C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Player.h(34,8):
-      vea la declaración de 'CJ'
-  
-  Main.cpp
-C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Player.h(34,8): warning C4099: 'CJ': nombre de tipo visto anteriormente usando 'class' ahora se ve usando 'struct'
+﻿  Main.cpp
+C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Player.h(37,8): warning C4099: 'CJ': nombre de tipo visto anteriormente usando 'class' ahora se ve usando 'struct'
   (compilando archivo de origen "Main.cpp")
-      C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Player.h(34,8):
+      C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Player.h(37,8):
       vea la declaración de 'CJ'
   
-C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(42,8): warning C4099: 'Map': nombre de tipo visto anteriormente usando 'class' ahora se ve usando 'struct'
+C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(43,8): warning C4099: 'Map': nombre de tipo visto anteriormente usando 'class' ahora se ve usando 'struct'
   (compilando archivo de origen "Main.cpp")
-      C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(42,8):
+      C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(43,8):
       vea la declaración de 'Map'
   
-C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Main.cpp(8,15): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Main.cpp(23,9): warning C4101: 'inputMainMenu': variable local sin referencia
-  Map.cpp
-C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Player.h(34,8): warning C4099: 'CJ': nombre de tipo visto anteriormente usando 'class' ahora se ve usando 'struct'
-  (compilando archivo de origen "Map.cpp")
-      C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Player.h(34,8):
-      vea la declaración de 'CJ'
-  
-C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(42,8): warning C4099: 'Map': nombre de tipo visto anteriormente usando 'class' ahora se ve usando 'struct'
-  (compilando archivo de origen "Map.cpp")
-      C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(42,8):
-      vea la declaración de 'Map'
-  
-C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.cpp(5,15): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-  Walker.cpp
-C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Player.h(34,8): warning C4099: 'CJ': nombre de tipo visto anteriormente usando 'class' ahora se ve usando 'struct'
-  (compilando archivo de origen "Walker.cpp")
-      C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Player.h(34,8):
-      vea la declaración de 'CJ'
-  
-C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(42,8): warning C4099: 'Map': nombre de tipo visto anteriormente usando 'class' ahora se ve usando 'struct'
-  (compilando archivo de origen "Walker.cpp")
-      C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(42,8):
-      vea la declaración de 'Map'
-  
-C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Walker.h(7,7): warning C4099: 'Map': nombre de tipo visto anteriormente usando 'struct' ahora se ve usando 'class'
-  (compilando archivo de origen "Walker.cpp")
-      C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Map.h(42,8):
-      vea la declaración de 'Map'
-  
-  Generando código...
+C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Main.cpp(11,15): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\DoblasGerard_ZornozaHector_AA2_1\Main.cpp(27,9): warning C4101: 'inputMainMenu': variable local sin referencia
   DoblasGerard_ZornozaHector_AA2_1.vcxproj -> C:\Users\PC\Desktop\Doblas_Gerard_Zornoza_Hector_AA2\DoblasGerard_ZornozaHector_AA2_1\x64\Debug\DoblasGerard_ZornozaHector_AA2_1.exe

@@ -144,7 +144,7 @@
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Walker.h" />
-    <ClInclude Include="Types.h" />
+    <ClInclude Include="ConsolUtils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

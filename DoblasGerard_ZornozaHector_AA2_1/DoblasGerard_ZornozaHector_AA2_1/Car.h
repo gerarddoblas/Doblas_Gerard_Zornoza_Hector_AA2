@@ -8,7 +8,7 @@ class CJ;
 class Cars {
 public:
 
-    void CarsManagment(Map& map, Settings& settings);
+    void CarsManagment(Map& map, const Settings& settings);
     void GetCar(int posX, int posY, Map& map, CJ& cj);
     void OutCar(Map& map, CJ& cj);
 

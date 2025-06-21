@@ -3,9 +3,10 @@
 #include <Windows.h>
 #include <algorithm>
 #include <conio.h>
-#include "Types.h"
+#include "ConsolUtils.h"
 #include "Player.h"
 #include "FileReader.h"
+#include "Walker.h"
 
 using namespace std;
 
@@ -41,7 +42,6 @@ enum class Zones {
 
 struct Map {
 public:
-
     Map(const Settings& settings);
 
     ~Map();
@@ -54,11 +54,10 @@ public:
     int limiteMov_X;
     int limiteMov_Y;
 
-
-
+    int newBossX;
+    int newBossY;
 
     Boxes** box;
-    int** pedestrianHealth;
 
 private:
 
@@ -66,8 +65,15 @@ private:
     int COLUMNS;
     int SANTOS_PEDESTRIANS_NUMBER;
     int SANTOS_MONEY_REQUIRED;
+    int SANTOS_HP;
+    int SANTOS_DM;
     int FIERRO_PEDESTRIANS_NUMBER;
     int FIERRO_MONEY_REQUIRED;
+    int FIERRO_HP;
+    int FIERRO_DM;
+    int VENTURAS_PEDESTRIANS_NUMBER;
+    int VENTURAS_HP;
+    int VENTURAS_DM;
 
     int mapBoundary_x;
     int mapBoundary_y;
@@ -76,9 +82,3 @@ private:
     const int PLAYER_VIEW_RANGE_Y = 12;
 
 };
-
-
-
-
-
-
